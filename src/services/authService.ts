@@ -31,7 +31,6 @@ export const authService = {
 
   fetchMe: async () => {
     const user = await api.get("/v1/users/profile/me", { withCredentials: true });
-    // console.log("Fetched user:", user);
     return user.data.data;
   },
 

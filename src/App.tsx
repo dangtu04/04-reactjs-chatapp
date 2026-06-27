@@ -1,10 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-import ChatApp from "./pages/ChatApp";
+import ChatAppPage from "./pages/ChatAppPage";
 import { Toaster } from "sonner";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import { useThemeStore } from "@/stores/useThemeStore";
+import { useEffect } from "react";
 const App = () => {
+  const { darkMode, setTheme } = useThemeStore();
+
+  useEffect(() => {
+    setTheme(darkMode);
+  }, [darkMode]);
   return (
     <>
       <Toaster />
@@ -16,7 +23,7 @@ const App = () => {
 
           {/* protected routes */}
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<ChatApp />} />
+            <Route path="/" element={<ChatAppPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
